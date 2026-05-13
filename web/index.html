@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReactiVisuals (web)</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="ui">
+      <h1>ReactiVisuals</h1>
+      <p class="hint">p5.js + TypeScript. TUIO: mock pointer or WebSocket bridge.</p>
+      <label class="row">
+        <span>Symbol ID (mock)</span>
+        <select id="symbolId">
+          <option value="0">0 — ellipse</option>
+          <option value="1">1 — 0/1 text</option>
+          <option value="2" selected>2 — triangle</option>
+        </select>
+      </label>
+      <label class="row">
+        <input type="checkbox" id="mockTuio" checked />
+        <span>Mock TUIO (follow pointer)</span>
+      </label>
+      <div class="row">
+        <input type="text" id="wsUrl" placeholder="ws://127.0.0.1:3333" />
+        <button type="button" id="wsConnect">Connect WS</button>
+        <button type="button" id="wsDisconnect" disabled>Disconnect</button>
+      </div>
+      <p class="hint small">
+        WebSocket JSON example:
+        <code>{"objects":[{"symbolId":2,"x":0.5,"y":0.5,"a":0}]}</code>
+        — x,y in 0–1 (TUIO-style origin bottom-left); omit objects for empty frame.
+      </p>
+      <div class="row">
+        <button type="button" id="serialConnect">Connect serial (9600)</button>
+        <button type="button" id="serialDisconnect" disabled>Disconnect serial</button>
+      </div>
+      <p class="hint small">Serial needs Chrome/Edge and HTTPS or localhost. Sends same <code>SxyZE</code> lines as the Arduino sketch.</p>
+    </div>
+    <main id="app"></main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

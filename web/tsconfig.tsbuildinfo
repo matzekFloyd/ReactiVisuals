@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/particle.ts","./src/particlesystem.ts","./src/serialprotocol.ts","./src/sketch.ts","./src/tuioinput.ts","./src/types.ts","./src/webserial.ts"],"errors":true,"version":"5.6.3"}

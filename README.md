@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Processing sketch plus Arduino firmware for a **TUIO tabletop** experience: fiducials drive a shared particle system while **serial** data from an Arduino toggles colors and a “poti” channel used for particle size.
+Processing sketch plus Arduino firmware for a **TUIO tabletop** experience: fiducials drive a shared particle system while **serial** data from an Arduino toggles colors and a “poti” channel used for particle size. A **browser build** in [`web/`](web/) (p5.js + TypeScript + Vite) is suitable for static hosting, with mock TUIO, optional WebSocket JSON, and Web Serial.
 
 ## Repository layout
 
@@ -10,6 +10,12 @@ Processing sketch plus Arduino firmware for a **TUIO tabletop** experience: fidu
 |------|------|
 | `tuif_P/` | Processing 3 sketch (main file `tuif_P.pde`, particle classes in extra tabs) |
 | `tuif_A/` | Arduino sketch: buttons, encoder-as-poti, LEDs, serial protocol |
+| `web/` | p5.js + TypeScript (Vite) browser build; see [`web/README.md`](web/README.md) |
+| [`netlify.toml`](netlify.toml) | Netlify: `base = web`, publish `web/dist` |
+
+## Web
+
+From `web/`: `npm install`, `npm run dev` for local preview; `npm run build` emits static assets to `web/dist/` for deployment. **Netlify:** [`netlify.toml`](netlify.toml) at the repo root builds from `web/` and publishes `web/dist`. See [`web/README.md`](web/README.md) for TUIO bridge JSON and hosting notes.
 
 ## Requirements
 
