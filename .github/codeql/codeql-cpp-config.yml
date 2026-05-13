@@ -1,0 +1,9 @@
+# C/C++ CodeQL: Arduino sketch only (no autobuild / no build system in CI).
+
+name: ReactiVisuals Arduino
+
+paths:
+  - tuif_A
+
+paths-ignore:
+  - "**/node_modules/**"
