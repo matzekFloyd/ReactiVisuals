@@ -1,0 +1,10 @@
+# JavaScript / TypeScript CodeQL — Vite app under web/
+
+name: ReactiVisuals Web
+
+paths:
+  - web
+
+paths-ignore:
+  - web/node_modules
+  - web/dist

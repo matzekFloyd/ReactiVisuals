@@ -1,5 +1,5 @@
-# CodeQL Advanced — JavaScript/TypeScript (web/) + source-only C/C++ (Arduino .ino).
-# c-cpp must not use autobuild: this repo has no CMake/Make for the sketch.
+# CodeQL — JavaScript/TypeScript only (web/). Arduino/Processing are not analyzed here:
+# C++ autobuild has no project in CI, and cpp extraction reported 0 sources for tuif_A/.ino.
 
 name: CodeQL
 
@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   analyze:
-    name: Analyze (${{ matrix.language }})
+    name: Analyze (javascript-typescript)
     runs-on: ubuntu-latest
     timeout-minutes: 45
     permissions:
@@ -26,17 +26,6 @@ jobs:
       actions: read
       contents: read
 
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - language: c-cpp
-            build-mode: none
-            config-file: .github/codeql/codeql-cpp-config.yml
-          - language: javascript-typescript
-            build-mode: none
-            config-file: .github/codeql/codeql-config.yml
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -44,23 +33,15 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
-          languages: ${{ matrix.language }}
-          build-mode: ${{ matrix.build-mode }}
-          config-file: ${{ matrix.config-file }}
+          languages: javascript-typescript
+          build-mode: none
+          config-file: .github/codeql/codeql-config.yml
 
       - name: Install web dependencies
-        if: matrix.language == 'javascript-typescript'
         run: npm ci
         working-directory: web
-
-      - name: Run manual build steps
-        if: matrix.build-mode == 'manual'
-        shell: bash
-        run: |
-          echo 'Manual build mode is not configured for this repository.'
-          exit 1
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
         with:
-          category: "/language:${{ matrix.language }}"
+          category: "/language:javascript-typescript"
