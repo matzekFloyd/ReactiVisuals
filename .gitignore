@@ -1,0 +1,19 @@
+# Processing
+tuif_P/applet/
+tuif_P/application.*.windows32/
+tuif_P/application.*.windows64/
+tuif_P/application.*.macosx/
+tuif_P/application.*.linux*/
+
+# Arduino build artifacts (if IDE copies sketch)
+*.hex
+*.elf
+build/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
